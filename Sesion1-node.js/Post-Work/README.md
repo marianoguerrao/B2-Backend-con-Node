@@ -1,6 +1,6 @@
 # Post Work: Renderizar Vistas "Bedu travels"
 
-Bienvenido al post work te felicitamos por llegar a este nivel de la sesión, en esta sección manejaremos ejercicios que reforzarán tu conocimiento de los ejercicios que realizaste en la sesión.
+Bienvenido al post work te felicitamos por llegar a este nivel de la sesión, en esta sección reforzaremos tu conocimiento de los ejercicios que realizaste en la sesión.
 
 ## Instrucciones
 
