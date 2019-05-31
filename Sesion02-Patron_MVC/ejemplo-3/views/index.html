@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Clase node.js</title>
+    <link rel="stylesheet" href="http://localhost:3000/static/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Hola mundo 1</h1>
+      <h2>Hola mundo 2</h2>
+      <h3>Hola mundo 3</h3>
+      <h4>Hola mundo 4</h4>
+      <h5>Hola mundo 5</h5>
+      <button onclick={http()}>AQUIII</button>
+    </div>
+
+  </body>
+  <script>
+    function http(url){
+      let Peticion = new XMLHttpRequest()
+      
+      Peticion.open('GET', 'http://localhost:3000/model' , false)
+      Peticion.send(null)
+      
+      let texto = JSON.parse(Peticion.response)
+      let p = document.createElement('p')
+      let img = document.createElement('img')
+      let div = document.createElement('div')
+
+      div.setAttribute('class', 'newElement')
+      let {title, description, imgUrl} = texto
+      img.src = imgUrl
+      p.innerHTML = `${title} -- ${description}`
+      return (
+        console.log(title) ,
+        document.querySelector('.container').appendChild(div),
+        document.querySelector('.newElement').appendChild(img),
+        document.querySelector('.newElement').appendChild(p)
+      )
+    }
+  </script>
+
+</html>
+
