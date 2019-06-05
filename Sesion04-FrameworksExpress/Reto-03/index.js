@@ -5,7 +5,7 @@ const APP_PORT = 3000
 
 // Dependecies y/o modelos
 const mongoose = require('mongoose')
-const TourModel = require('./models/User')
+const TourModel = require('./models/Tour')
 // conexion mongoose
 
 mongoose.connect('mongodb://localhost:27017/BeduTravels', { useNewUrlParser: true })

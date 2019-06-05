@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const ControllersTours = require('../controllers/Tours')
+const ControllersTours = require('../controllers/User')
 
 router.get('/', ControllersTours.findAll)
 router.get('/:id', ControllersTours.findById)
