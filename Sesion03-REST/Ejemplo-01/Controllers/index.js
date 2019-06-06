@@ -32,11 +32,11 @@ const renderModel = (req, res) => {
 }
 
 const postModel = (req, res) => {
-  let newTour = new Model.User(req.headers.type, req.headers.pais, req.headers.ruta)
-  Users.push(newTour)
+  let newUser = new Model.User(req.headers.name, req.headers.description, req.headers.age)
+  Users.push(newUser)
   // console.log(data)
 
-  res.write(JSON.parse(Users))
+  res.write(JSON.parse(newUser))
   res.end()
 }
 module.exports = {

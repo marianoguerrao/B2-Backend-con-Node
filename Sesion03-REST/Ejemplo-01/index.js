@@ -55,7 +55,7 @@ const staticServer = (req, res) => {
 const Router = (req, res) => {
   if (req.url === '/') {
     return routerUser(req, res)
-  } else if (req.url === '/tours') {
+  } else if (req.url === '/users') {
     return routerModel(req, res)
   }
   staticServer(req, res)
