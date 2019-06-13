@@ -27,22 +27,21 @@ const mimeTypes = {
 // Explicar que es el req.url y el req.method.
 // Tambien como funciona el http.createServer y por que le pasamos el Router y concatenamos el listen
 const routerUser = (req, res) => {
+  if (req.method === 'GET') {
+    return Controllers.renderIndex(req, res)
+  } else if (req.method === 'POST') {
+    res.write('Hola bienvenido')
+  }
+}
+
+const routerModel = (req, res) => {
   req.database = connection
   if (req.method === 'GET') {
     return Controllers.findUsers(req, res)
   } else if (req.method === 'POST') {
-    console.log(req.headers)
     return Controllers.crearUsuario(req, res)
   }
 }
-
-// const routerModel = (req, res) => {
-//   if (req.method === 'GET') {
-//     return Controllers.renderModel(req, res)
-//   } else if (req.method === 'POST') {
-//     return Controllers.postModel(req, res)
-//   }
-// }
 
 const staticServer = (req, res) => {
   const uri = url.parse(req.url).pathname
@@ -67,6 +66,8 @@ const staticServer = (req, res) => {
 const Router = (req, res) => {
   if (req.url === '/') {
     return routerUser(req, res)
+  } else if (req.url === '/users') {
+    return routerModel(req, res)
   }
   staticServer(req, res)
 }

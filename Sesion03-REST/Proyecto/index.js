@@ -4,7 +4,7 @@ const Controllers = require('./Controllers/index')
 const port = 3000
 const path = require('path')
 const fs = require('fs')
-const Database = require('./db/database');
+const Database = require('./db/database')
 
 const db = new Database('./db/database.db')
 const connection = db.getConnection()
@@ -29,12 +29,18 @@ const mimeTypes = {
 const routerUser = (req, res) => {
   req.database = connection
   if (req.method === 'GET') {
+    return Controllers.renderIndex(req, res)
+  }
+}
+
+const routerModel = (req, res) => {
+  req.database = connection
+  if (req.method === 'GET') {
     return Controllers.findTour(req, res)
   } else if (req.method === 'POST') {
     return Controllers.crearTour(req, res)
   }
 }
-
 const staticServer = (req, res) => {
   const uri = url.parse(req.url).pathname
   console.log(process.cwd())
@@ -58,6 +64,8 @@ const staticServer = (req, res) => {
 const Router = (req, res) => {
   if (req.url === '/') {
     return routerUser(req, res)
+  } else if (req.url === '/tours') {
+    return routerModel(req, res)
   }
   staticServer(req, res)
 }

@@ -35,7 +35,7 @@ const postModel = (req, res) => {
   let newTour = new Model.Tour(req.headers.type, req.headers.pais, req.headers.ruta)
   Tours.push(newTour)
   res.writeHead(201, { 'Content-type': 'application/json' })
-  res.write(JSON.stringify(Tours))
+  res.write(JSON.stringify(newTour))
   res.end()
 }
 module.exports = {

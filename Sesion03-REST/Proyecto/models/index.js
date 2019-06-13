@@ -1,15 +1,13 @@
 
 class Tour {
-  constructor (title, type, price, routeImage) {
+  constructor (title, type, price, routeimage) {
     this.title = title
     this.type = type
     this.price = price
-    this.routeImage = routeImage
-    this.createAt = new Date()
+    this.routeimage = routeimage
   }
 }
 
 module.exports = {
   Tour
 }
-

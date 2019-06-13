@@ -11,15 +11,14 @@ const crearUsuario = (req, res) => {
     stmt.run(user.name, user.description, user.age)
     stmt.finalize()
   })
-  res.writeHead(201, {'Content-type': 'application/json'})
+  res.writeHead(201, { 'Content-type': 'application/json' })
   res.write(JSON.stringify(user))
   res.end()
-  return
 }
 
-function findUsers(req, res){  
-  const { database: db } = req  
-    db.all('SELECT * FROM users', (err, rows) => {
+function findUsers (req, res) {
+  const { database: db } = req
+  db.all('SELECT * FROM users', (err, rows) => {
     if (err) return err
     // Haz un console.log de row para saber que te esta llegando
     console.log(rows)
@@ -28,7 +27,7 @@ function findUsers(req, res){
     res.write(JSON.stringify(rows))
     res.end()
     // res.end(arr.map(e => e))
-  })  
+  })
 }
 
 const renderIndex = (req, res) => {

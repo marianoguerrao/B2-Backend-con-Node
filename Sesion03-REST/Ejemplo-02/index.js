@@ -28,6 +28,13 @@ const routerUser = (req, res) => {
   req.database = connection
   if (req.method === 'GET') {
     return Controllers.renderIndex(req, res)
+  }
+}
+
+const routerModel = (req, res) => {
+  req.database = connection
+  if (req.method === 'GET') {
+    return Controllers.findUsers(req, res)
   } else if (req.method === 'POST') {
     console.log('Aqui vas a mandar un usuario')
   }
@@ -56,6 +63,8 @@ const staticServer = (req, res) => {
 const Router = (req, res) => {
   if (req.url === '/') {
     return routerUser(req, res)
+  } else if (req.url === '/users') {
+    return routerModel(req, res)
   }
   staticServer(req, res)
 }

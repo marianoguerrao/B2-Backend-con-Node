@@ -4,7 +4,7 @@ const Controllers = require('./Controllers/index')
 const port = 3000
 const path = require('path')
 const fs = require('fs')
-const Database = require('./db/database');
+const Database = require('./db/database')
 
 const db = new Database('./db/database.db')
 const connection = db.getConnection()
@@ -27,6 +27,13 @@ const mimeTypes = {
 // Explicar que es el req.url y el req.method.
 // Tambien como funciona el http.createServer y por que le pasamos el Router y concatenamos el listen
 const routerUser = (req, res) => {
+  req.database = connection
+  if (req.method === 'GET') {
+    return Controllers.renderIndex(req, res)
+  }
+}
+
+const routerModel = (req, res) => {
   req.database = connection
   if (req.method === 'GET') {
     return Controllers.findTour(req, res)
@@ -58,6 +65,8 @@ const staticServer = (req, res) => {
 const Router = (req, res) => {
   if (req.url === '/') {
     return routerUser(req, res)
+  } else if (req.url === '/tours') {
+    return routerModel(req, res)
   }
   staticServer(req, res)
 }

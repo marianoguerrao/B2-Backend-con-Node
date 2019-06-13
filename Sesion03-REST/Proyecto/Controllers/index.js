@@ -4,23 +4,22 @@ const Model = require('../models/index')
 const crearTour = (req, res) => {
   const { database: db } = req
   // Creating a user using Prepared Statement
-  const {title, type, price, routeImage} = req.headers
-  const user = new Model.Tour(title, type, price, routeImage)
+  const { title, type, price, routeimage } = req.headers
+  const user = new Model.Tour(title, type, price, routeimage)
   db.serialize(async () => {
-    const stmt = db.prepare(`INSERT INTO tours(title, type, price, routeImage) 
+    const stmt = db.prepare(`INSERT INTO tours(title, type, price, routeimage) 
     VALUES (?, ?, ?, ?)`)
-    stmt.run(user.title, user.type, user.price, user.routeImage)
+    stmt.run(user.title, user.type, user.price, user.routeimage)
     stmt.finalize()
   })
-  res.writeHead(201, {'Content-type': 'application/json'})
+  res.writeHead(201, { 'Content-type': 'application/json' })
   res.write(JSON.stringify(user))
   res.end()
-  return
 }
 
-function findTour(req, res){  
-  const { database: db } = req  
-    db.all('SELECT * FROM tours', (err, rows) => {
+function findTour (req, res) {
+  const { database: db } = req
+  db.all('SELECT * FROM tours', (err, rows) => {
     if (err) return err
     // Haz un console.log de row para saber que te esta llegando
     console.log(rows)
@@ -29,7 +28,7 @@ function findTour(req, res){
     res.write(JSON.stringify(rows))
     res.end()
     // res.end(arr.map(e => e))
-  })  
+  })
 }
 
 const renderIndex = (req, res) => {
