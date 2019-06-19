@@ -5,11 +5,11 @@ Esta es la sesión de express donde aprenderás:
 ## Initalize Express.
 
 [Ejemplo 1](Ejemplo-01)   
+[Ejemplo 2](Ejemplo-02)   
 [Reto 1](Reto-01)
 
 ## Request and response with express.
 
-[Ejemplo 2](Ejemplo-02)   
 [Ejemplo 3](Ejemplo-03)   
 [Reto 2](Reto-02)
 
