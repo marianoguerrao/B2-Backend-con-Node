@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
-import {graphqlExpress, graphiqlExpress} from 'graphql-server-express';
-import { makeExecutableSchema } from 'graphql-tools';
+import { ApolloServer } from 'apollo-server-express';
+import ExpressPlayground from 'graphql-playground-middleware-express';
 import boom from 'express-boom';
 import schema from './schema';
 import resolvers from './resolvers';
@@ -13,10 +13,12 @@ const app = express();
 app.use(boom());
 
 // Added schema definitions and resolvers
-const executableSchema = makeExecutableSchema({
+const server = new ApolloServer({
   typeDefs: schema,
   resolvers,
 });
+// `applyMiddleware`: Allow middleware mounted on the same path
+server.applyMiddleware({ app });
 
 // Added middlewares for parse incoming requests
 app.use(express.urlencoded({ extended: true }));
@@ -28,21 +30,12 @@ app.get('/', (req, res) => res.status(200).json({
   message: 'Welcome to Bedu Travels API'
 }));
 
-// Route handler for GraphQL Service
-app.use('/graphql', graphqlExpress(req => ({
-  schema: executableSchema,
-  context: {},
-})));
-
-// Route handler for GraphiQL
-app.use('/graphiql', graphiqlExpress({
-  endpointURL: '/graphql',
-}));
+app.get('/playground', ExpressPlayground({ endpoint: '/graphql' }));
 
 // Route handler for 404
 app.use('*', (req, res) => res.boom.notFound());
 
 app.listen(APP_PORT, () => {
   console.log(`GraphQL API Service: 0.0.0.0:${APP_PORT}/graphql`);
-  console.log(`GraphiQL: 0.0.0.0:${APP_PORT}/graphiql`);
+  console.log(`GraphQL Playground: 0.0.0.0:${APP_PORT}/playground`);
 });
