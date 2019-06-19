@@ -4,7 +4,7 @@
 Crear una mutación que permita registrar usuarios en la aplicación.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 01](../Ejemplo-01).
+1. Proyecto con GraphQL API. [Ejemplo 01](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-01).
 2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO
@@ -24,7 +24,7 @@ APP_MONGO_URI=mongodb://localhost/bedu-travels
 mongoose.connect(APP_MONGO_URI, { useNewUrlParser: true }).then(() => {
   app.listen(APP_PORT, () => {
     console.log(`GraphQL API Service: 0.0.0.0:${APP_PORT}/graphql`);
-    console.log(`GraphiQL: 0.0.0.0:${APP_PORT}/graphiql`);
+    console.log(`GraphQL Playground: 0.0.0.0:${APP_PORT}/graphiql`);
     console.log(`Mongo DB Service: ${APP_MONGO_URI}`);
   });
 }).catch(err => {
@@ -38,10 +38,10 @@ const APP_PORT = process.env.APP_PORT || 8080;
 const APP_MONGO_URI = process.env.APP_MONGO_URI;
 ```
 
-5. Ejecutamos nuestro proyecto utilizando `npm start dev` y deberíamos poder observar los siguientes mensajes.
+5. Ejecutamos nuestro proyecto utilizando `npm run dev` y deberíamos poder observar los siguientes mensajes.
 ```sh
 GraphQL API Service: 0.0.0.0:8080/graphql
-GraphiQL: 0.0.0.0:8080/graphiql
+GraphQL Playground: 0.0.0.0:8080/playground
 Mongo DB Service: mongodb://localhost/bedu-travels
 ```
 
@@ -188,13 +188,13 @@ export default resolvers;
 └── package-lock.json
 ```
 
-13. Ahora, vamos a ejecutar nuevamente nuestro proyecto y vamos a dirigirnos a `http://localhost:8080/graphiql` para hacer nuestras pruebas. Si todo ha ido bien, podremos observar los mensajes en consola de que nuestra aplicación ha funcionado de forma correcta. De esta forma, podremos observar dentro de GraphiQL que ahora tenemos `mutations` dentro de nuestra documentación.
+13. Ahora, vamos a ejecutar nuevamente nuestro proyecto y vamos a dirigirnos a `http://localhost:8080/graphql` para hacer nuestras pruebas. Si todo ha ido bien, podremos observar los mensajes en consola de que nuestra aplicación ha funcionado de forma correcta. De esta forma, podremos observar dentro de GraphiQL que ahora tenemos `mutations` dentro de nuestra documentación.
 
-![GraphiQL Docs](./screenshots/graphiql-docs.png)
+![GraphiQL Docs](./screenshots/graphql-playground-docs.png)
 
 14. Si hacemos clic sobre `mutation`, podremos ver las mutaciones disponibles para utilizar dentro de nuestro servicio de GraphQL, en este caso, podremos encontrar únicamente nuestra mutación de `signup`.
 
-![GraphiQL Mutations](./screenshots/graphiql-docs-mutations.png)
+![GraphiQL Mutations](./screenshots/graphql-playground-mutations.png)
 
 15. Ahora vamos a proceder a probar nuestro servicio para eso primeramente construiremos nuestra mutation a consumir y agregaremos las variables que enviaremos a nuestro servidor.
 
@@ -224,7 +224,7 @@ mutation ($input: InputSignup!) {
 ```
 
 #### Si todo ha salido bien, verás el siguiente resultado.
-![GraphiQL Test](./screenshots/graphiql-test-mutation.png)
+![GraphiQL Test](./screenshots/graphql-playground-test-mutation.png)
 
 16. Una ves GraphQL haya resuelto de forma correcta, podremos observar dentro de MongoDB nuestro nuevo usuario registrado.
 ```
