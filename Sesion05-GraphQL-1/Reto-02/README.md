@@ -4,7 +4,7 @@
 Crear un Query que permita obtener los tours registrados.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 03](../Ejemplo-03).
+1. Proyecto con GraphQL API. [Ejemplo 03](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-03).
 2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO
