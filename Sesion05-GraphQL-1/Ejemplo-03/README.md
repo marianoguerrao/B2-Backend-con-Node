@@ -5,7 +5,7 @@
 Crear un Query que permita obtener los usuarios registrados.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 02](../Ejemplo-02).
+1. Proyecto con GraphQL API. [Ejemplo 02](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-02).
 2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO
@@ -32,7 +32,7 @@ const Query = {
 export default Query;
 ```
 
-3. Ejecutamos nuevamente nuestra aplicación `npm run dev` y nos dirigimos a `http://localhost:8080/graphiql`.
+3. Ejecutamos nuevamente nuestra aplicación `npm run dev` y nos dirigimos a `http://localhost:8080/graphql`.
 
 4. Vamos a lanzar la consulta a través del servicio de GraphQL.
 ```
@@ -46,4 +46,5 @@ query {
 ```
 
 5. Si todo ha salido bien, deberías obtener el siguiente resultado.
-![GraphiQL Query Users](./screenshots/graphiql-query-users.png)
+
+![GraphiQL Query Users](./screenshots/graphql-playground-query-users.png)
