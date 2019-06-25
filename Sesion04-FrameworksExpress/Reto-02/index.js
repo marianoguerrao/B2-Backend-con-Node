@@ -22,7 +22,7 @@ app.get('/tours', (req, res, next) => {
 })
 
 app.get('/user', (req, res, next) => {
-  res.status(200).json({ message: 'Hola desde tours' })
+  res.status(200).json({ message: 'Hola desde user' })
 })
 
 // listen
