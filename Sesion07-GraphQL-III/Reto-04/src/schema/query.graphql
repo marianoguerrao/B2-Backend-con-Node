@@ -1,0 +1,37 @@
+enum SortDirection {
+  ASCENDING,
+  DESCENDING
+}
+
+enum SortableUserField {
+  createdAt
+}
+
+enum SortableTourField {
+  title
+  typeTour
+  createdAt
+}
+
+enum FilterType {
+  PRIVATE,
+  GROUP
+}
+
+type Query {
+  status: String
+  users(
+    page: Int = 1,
+    limit: Int = 10,
+    sort: SortDirection = DESCENDING,
+    sortBy: SortableUserField = createdAt
+  ): [User]
+  user(id: ID!): User
+  tours(
+    page: Int = 1,
+    limit: Int = 10,
+    sort: SortDirection = DESCENDING
+    sortBy: SortableTourField = createdAt
+    type: FilterType
+  ): [Tour]
+}
