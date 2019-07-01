@@ -1,11 +1,11 @@
-##### RETO 08
+##### RETO 03
 ## PAGINAR RESULTADOS DE LOS TOURS REGISTRADOS
 
 ### OBJETIVO
 A través de argumentos, añadir al Query de `Tours` el soporte para paginar un conjunto de datos.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 08](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-08).
+1. Proyecto con GraphQL API. [Ejemplo 02](../Ejemplo-02).
 2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO

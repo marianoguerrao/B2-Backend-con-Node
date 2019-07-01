@@ -1,11 +1,11 @@
-##### EJEMPLO 08
+##### EJEMPLO 02
 ## PAGINAR RESULTADOS DE LOS USUARIOS REGISTRADOS
 
 ### OBJETIVO
 A través de argumentos, añadir al Query de `User` el soporte para paginar un conjunto de datos.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 07](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-07).
+1. Proyecto con GraphQL API. [Ejemplo 01](../Ejemplo-01).
 2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO

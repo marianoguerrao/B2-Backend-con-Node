@@ -1,12 +1,12 @@
-##### EJEMPLO 07
+##### EJEMPLO 01
 ## OBTENIENDO SOLO UN USUARIO CON GRAPHQL
 
 ### OBJETIVO
 Agregar un Query para obtener un usuario especifico usando argumentos.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 06](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-06).
-2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
+
+1. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO
 Lo primero que debemos saber antes de crear nuestro Query es saber que un argumento, es un atributo o conjunto de atributos que son enviados para realizar acciones dentro de nuestra lógica de negocio.

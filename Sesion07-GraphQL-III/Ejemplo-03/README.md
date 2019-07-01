@@ -1,11 +1,11 @@
-##### EJEMPLO 09
+##### EJEMPLO 03
 ## ORDENANDO REGISTROS CON GRAPHQL
 
 ### OBJETIVO
 A través de un argumento, enviar a un Query como se van a ordenar nuestros registros.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 08](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-08).
+1. Proyecto con GraphQL API. [Ejemplo 02](../Ejemplo-02).
 2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO

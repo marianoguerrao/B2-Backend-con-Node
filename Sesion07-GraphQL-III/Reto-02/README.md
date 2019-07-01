@@ -1,11 +1,11 @@
-##### RETO 07
+##### RETO 02
 ## FILTRAR LOS TOURS A TRAVÉS DEL TIPO DE TOUR
 
 ### OBJETIVO
 Agregar un argumento al Query `Tours` para obtener estos basados en su tipo.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 07](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-07).
+1. Proyecto con GraphQL API.  [Ejemplo 01](../Ejemplo-01).
 2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO

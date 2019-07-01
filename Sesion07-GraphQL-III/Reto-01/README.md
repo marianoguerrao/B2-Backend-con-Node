@@ -1,11 +1,11 @@
-##### RETO 06
+##### RETO 01
 ## ERROR AL INGRESAR UN ID INCORRECTO Y NO EXISTENTE
 
 ### OBJETIVO
 Prevenir el error que ocurre al ingresar un ID erroneo o no existente.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 07](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-07).
+1. Proyecto con GraphQL API. [Ejemplo 01](../Ejemplo-01).
 2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO
