@@ -5,7 +5,7 @@
 Crear un Query que permita obtener los usuarios registrados.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 02](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-02).
+1. Proyecto con GraphQL API. [Ejemplo 02](../Ejemplo-02).
 2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO

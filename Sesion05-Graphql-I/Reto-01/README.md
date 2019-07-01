@@ -4,7 +4,7 @@
 Crear una mutación que permita agregar nuevos tours en la aplicación.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 02](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-02).
+1. Proyecto con GraphQL API. [Ejemplo 02](../Ejemplo-02).
 2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO

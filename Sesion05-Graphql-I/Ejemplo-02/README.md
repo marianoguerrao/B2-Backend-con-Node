@@ -4,7 +4,7 @@
 Crear una mutación que permita registrar usuarios en la aplicación.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 01](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-01).
+1. Proyecto con GraphQL API. [Ejemplo 01](../Ejemplo-01).
 2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO
