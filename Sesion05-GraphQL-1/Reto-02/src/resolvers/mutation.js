@@ -1,5 +1,6 @@
 import User from '../models/User';
 import bcrypt from 'bcryptjs';
+import Tour from '../models/Tour';
 
 const Mutation = {
   signup: async (parent, { input }) => {
@@ -23,6 +24,12 @@ const Mutation = {
       token: 'jwt-token-generated',
       user: newUser,
     };
+  },
+  createTour: async(_, { input }) => {
+    const tour = new Tour({ ...input });
+    tour.save();
+
+    return tour;
   },
 };
 

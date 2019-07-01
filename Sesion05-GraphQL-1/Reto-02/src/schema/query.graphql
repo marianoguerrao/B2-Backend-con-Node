@@ -1,4 +1,5 @@
 type Query {
   status: String
   users: [User]
+  tours: [Tour]
 }
