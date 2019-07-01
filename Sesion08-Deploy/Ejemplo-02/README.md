@@ -5,7 +5,7 @@
 Configurar nuestra base de datos del proyecto en Heroku utilizando mLab.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 10](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-11).
+1. Proyecto con GraphQL API. [Ejemplo 2](../Ejemplo-2).
 2. Una cuenta de Heroku. [Acceder](https://id.heroku.com/login).
 3. Tu proyecto de Heroku creado.
 

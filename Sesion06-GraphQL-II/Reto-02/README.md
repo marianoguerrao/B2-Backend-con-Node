@@ -5,7 +5,7 @@
 Permitir únicamente a usuarios autorizados acceder a ciertas mutaciones y queries del proyecto.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 02](Ejemplo-02).
+1. Proyecto con GraphQL API. [Ejemplo 02](../Ejemplo-02).
 2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO

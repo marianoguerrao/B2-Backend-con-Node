@@ -5,7 +5,7 @@
 A través de un argumento, enviar a un Query como se van a ordenar nuestros registros de los Tours almacenados.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 09](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-09).
+1. Proyecto con GraphQL API. [Ejemplo 03](../Ejemplo-03).
 2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO

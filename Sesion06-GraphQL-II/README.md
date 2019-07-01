@@ -9,7 +9,7 @@
 ### ORGANIZACIÓN DE CLASE
 
 
-- Autenticaión con JWT.
+- Autenticación con JWT.
     - [Ejemplo 1](Ejemplo-01)
 - Protegiendo Querys.
     - [Reto 1](Reto-01)
