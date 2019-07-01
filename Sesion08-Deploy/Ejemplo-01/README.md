@@ -1,13 +1,12 @@
-##### EJEMPLO 10
+##### EJEMPLO 1
 ## DEZPLEGAR UN API GRAPHQL UTILIZANDO HEROKU
 
 ### OBJETIVO
 Deplegar la  aplicación en un ambiente de producción utilizando Heroku.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 09](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-09).
-2. Una cuenta de Heroku. [Crear cuenta](https://signup.heroku.com/) o [Acceder](https://id.heroku.com/login).
-3. Heroku CLI. [Download](https://devcenter.heroku.com/articles/heroku-cli#download-and-install).
+1. Una cuenta de Heroku. [Crear cuenta](https://signup.heroku.com/) o [Acceder](https://id.heroku.com/login).
+2. Heroku CLI. [Download](https://devcenter.heroku.com/articles/heroku-cli#download-and-install).
 
 ### DESARROLLO
 Lo primero que debemos verificar es nuestra instalación de Heroku CLI, ya que lo utilizaremos para crear nuestra aplicación en Heroku.
