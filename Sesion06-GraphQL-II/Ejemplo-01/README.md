@@ -5,8 +5,7 @@
 Generar un token de autorización utilizando JWT.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 03](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-03).
-2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
+1. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO
 1. Para lograr el objetivo de este ejercicio, debemos primeramente preparar nuestra aplicación para generar los `json-web-tokens` y darle autorización a un usuario a acceder a ciertas secciones del API. Para ello, si observamos en el archivo `src/resolvers/mutation.js` en la línea número `23`, ya habíamos preparado anteriormente el `json` a resolver, en donde colocaremos el token de `jwt` generado cuando un usuario se haya registrado.

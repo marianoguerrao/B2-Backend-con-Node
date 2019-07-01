@@ -5,7 +5,7 @@
 Crear una suscripción para escuchar cuando un nuevo tour haya sido creado.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 06](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-06).
+1. Proyecto con GraphQL API. [Ejemplo 03](Ejemplo-03).
 2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO

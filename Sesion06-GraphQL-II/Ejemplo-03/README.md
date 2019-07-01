@@ -5,7 +5,7 @@
 Crear suscripciones para obtener cambios en el estado en tiempo real dentro de una aplicación.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 05](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-05).
+1. Proyecto con GraphQL API. [Ejemplo 02](Ejemplo-02).
 2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO

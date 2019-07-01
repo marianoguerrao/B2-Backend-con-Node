@@ -9,15 +9,15 @@
 ### ORGANIZACIÓN DE CLASE
 
 
-- AUTENTICACIÓN CON JWT.
+- Autenticaión con JWT.
     - [Ejemplo 1](Ejemplo-01)
-- PROTEGIENDO QUERYS.
+- Protegiendo Querys.
     - [Reto 1](Reto-01)
-- CONTEXT.
+- Context.
     - [Ejemplo 2](Ejemplo-02)
-- PERMISOS EN AUTENTICACIÓN.
+- Permisos en autenticación.
     - [Reto 2](Reto-02) 
-- SUSCRIPCIONES.
+- Suscripciones.
     - [Ejemplo 3](Ejemplo-03)
     - [Reto 3](Reto-03)
 
