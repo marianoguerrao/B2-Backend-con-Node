@@ -1,119 +1,142 @@
-##### EJEMPLO 05
-## USANDO CONTEXT PARA PROTEGER ACCIONES EN GRAPHQL
+##### EJEMPLO 06
+## SUSCRIPCIONES EN GRAPHQL
 
 ### OBJETIVO
-Proteger las mutaciones y queries que requieren autorización utilizando JWT (JSON Web Tokens).
+Crear suscripciones para obtener cambios en el estado en tiempo real dentro de una aplicación.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 04](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-04).
+1. Proyecto con GraphQL API. [Ejemplo 02](../Ejemplo-02).
 2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO
-Para poder lograr el objetivo, primero debemos entender un poco sobre como funciona el contexto, el Contexto o `context` es la ubicación donde podemos almacenar valores globales a los cuales cualquier `resolver` puede acceder. El `context` es un buen lugar para almacenar información sobre autenticación, detalles de base de datos, cache y cualquier otra cosa que se necesite en GraphQL.
+En GraphQL, utilizamos suscripciones para escuchar cambios especificos dentro de nuestra API. Apollo Server ya soporta de suscripciones, este encapsula un par de paquetes necesarios para configurar WebSockets en GraphQL: `graphql-subscriptions` y `subscriptions-transport-ws`. El paquete `graphql-subscriptions` provee una implementación del patrón PubSub, osea `publisher/suscriber` (quién publica/quien se suscribe). PubSub es esencial para publicar cambios de los datos desde el cuál los suscriptores (clientes) pueden consumir. El paquete `subscriptions-transport-ws` es un servidor de WebSocket y cliente que permite transportar suscripciones sobre webSockets. Apollo Server automaticamente incorpora ambos de estos paquetes para soportar suscripciones.
 
-Por esta razón, dentro de nuestro archivo `src/index.js` en la línea 20 agregaremos el contexto de GraphQL, aquí es donde añadiremos nuestra lógica para determinar que hacer para llevar acabo el proceso de autorización.
+Por defecto, Apollo Server configura un WebSocket en `ws://localhost:8080`. Nosotros estamos utilizando `apollo-server-express` por lo tanto, solo tendremos que hacer algunos pasos para que las suscripciones funciones.
+
+Primero, vamos a dirigirnos al archivo `src/index.js` e importaremos la función `createServer` desde el módulo `http`.
 ```js
-// Added schema definitions and resolvers
-const server = new ApolloServer({
-  typeDefs: schema,
-  resolvers,
+import { createServer } from 'http';
+```
+
+Apollo Server puede automaticamente configurar suscripciones, pero para hacer esto, necesitamos un servidor HTTP. Para esto usaremos `createServer` para crear uno. Vamos a localizar el código donde el servicio de GraphQL es iniciado en un puerto en específico with `app.listen`. Y reemplazaremos el código con lo siguiente:
+```js
+const httpServer = createServer(app);
+server.installSubscriptionHandlers(httpServer);
+
+// Connecting to Mongo DB
+mongoose.connect(APP_MONGO_URI, { useNewUrlParser: true }).then(() => {
+  httpServer.listen({ port: APP_PORT }, () => {
+    console.log(`GraphQL API Service: 0.0.0.0:${APP_PORT}/graphql`);
+    console.log(`GraphQL Playground: 0.0.0.0:${APP_PORT}/playground`);
+    console.log(`Mongo DB Service: ${APP_MONGO_URI}`);
+  });
+}).catch(err => {
+  throw new Error(err)
 });
 ```
 
-Ahora, vamos a consumir el Query de `users` para obtener los usuarios registrados. Pero este Query, solo lo deberían consumir usuarios autorizados, es por ello que será necesario primeramente iniciar sesión a través de la mutación `login` y obtendremos un JWT token. 
+Dentro de esto, nosotros primeramente creamos un nuevo `httpServer` usando una instancia de Express. El `httpServer` esta listo para recibir todas las peticiones HTTP enviadas basada en nuestra configuración de Express. La siguiente línea de código, `server.installSubscriptionHandlers(httpServer)` es quién hace el trabajo con los WebSockets. Aquí, es donde Apollo Server agrega los handlers necesarios para soportar suscripciones con WebSockets. En adición a nuestro servidor HTTP, nuestro backend esta ahora listo para recibir peticiones en `ws://localhost:8080/graphql`.
 
-![GraphQL Plaground Login](./screenshots/graphql-playground-login.png)
+Ahora, nuestro servicio soporta Suscripciones, es hora de implementarlos.
 
-Ahora, este token generado lo enviaremos a través de un `Header` dentro de la petición HTTP. Así que, dentro de la sección de HTTP Headers vamos a enviarlo al Query de `users`.
-
-![GraphQL Playground Headers](./screenshots/graphql-playground-headers.png)
-
-De esta manera, podremos observar que el Query nos resuelve correctamente la información, pero esto no significa que ya estemos protegidos, ya que hasta el momento, solo hemos enviado el token, pero no hemos verificado que este sea válido.
-
-Para lograr verificar primeramente, vamos a obtener el `Header` desde la petición enviada al servicio de GraphQL y posteriormente, usaremos la librería de `jsonwebtoken` que utilizamos para firmar dichos tokens, ahora para validar que sean nuestros tokenes generados.
-
-Esto lo obtendremos desde la petición osea el `request` recibido a través de Express, para ello, haremos una modificaciones dentro de nuestro contexto.
+Lo primero que debemos hacer, es crear una instancia de `PubSub` para abrir un canal de comunicación, para eso antes del código donde tenemos definido nuestro servidor de Apollo Server, vamos a crear una nueva instancia de PubSub. Para poder hacer uso de `PubSub` lo podremos importar desde el paquete de `apollo-server-express`.
 ```js
+import { ApolloServer, PubSub } from 'apollo-server-express';
+
+// ...
+const pubsub = new PubSub();
+
+// Added schema definitions and resolvers
+const server = new ApolloServer({
+  // ...
+});
+```
+
+Una ves que generamos esta nueva instancia, vamos a propagarlo a través del contexto de GraphQL.
+```js
+// ...
+const pubsub = new PubSub();
+
 // Added schema definitions and resolvers
 const server = new ApolloServer({
   typeDefs: schema,
   resolvers,
-  context: async ({ req }) => {
+  context: ({ req }) => {
     let currentUser;
     const token = req.headers.authorization;
     if (token) {
       currentUser = jwt.verify(token, APP_JWT_SECRET);
     }
-    return { ...req, currentUser };
+    return { ...req, currentUser, pubsub };
   },
 });
 ```
 
-En el código anterior, utilizamos `req.headers.authorization` para acceder al objeto de `headers` dentro de `req` y así obtener el `Authorization` header, en donde estamos enviando nuestro token. Posteriormente, verificamos si nos han enviado el token, si esto fue así procedemos a validarlos a través de `jsonwebtoken`, en caso contrario, si no encontramos un token, simplemente enviamos un `currentUser` sin definir para más adelante validar si es que existe un usuario autenticado.
+Una vez hecho esto, vamos a agregar la lógica de nuestra suscripción. Primero, vamos a agregar dentro del archivo `src/schema/schemaDefinition.graphql` la definición del tipo `Suscription`.
+```graphql
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+```
 
-Ahora, una vez ya recibimos nuestro token y agregamos al usuario autenticado al contexto, entonces es hora de proteger nuestras rutas. Primero, protegeremos el Query de `users`, este lo podremos encontrar dentro del archivo `src/resolvers/query.js`.
+Una vez definido el tipo, vamos a crear un nuevo archivo llamado `src/schema/subscription.graphql` donde definiremos nuestra `Subscription`.
+```graphql
+type Subscription {
+  newUser: User!
+}
+```
+
+Y por último, lo agregamos a nuestro archivo `src/schema/index.js`.
 ```js
-import User from '../models/User';
+// Import schema definition
+import SchemaDefinition from './schemaDefinition.graphql';
+import Types from './types.graphql';
 
-const Query = {
-  status: () => 'Welcome to GraphQL',
-  users: () => {
-    return User.find().exec();
+// Import Queries and Mutations
+import Query from './query.graphql';
+import Mutation from './mutation.graphql';
+import Subscription from './subscription.graphql';
+
+export default [SchemaDefinition, Types, Query, Mutation, Subscription];
+```
+
+Una vez definida la suscripción dentro de nuestro servicio GraphQL, necesitamos crear el `resolver` que se encargara de suscribir el evento. Para ello, vamos a crear un archivo llamado `subscription.js` dentro del directorio `src/resolvers`.
+```js
+const Subscription = {
+  newUser: {
+    subscribe: (_, args, { pubsub }) => pubsub.asyncIterator(['user-added'])
   },
 };
 
-export default Query;
+export default Subscription;
 ```
 
-Lo primero que haremos será acceder al contexto para obtener los datos que hemos propagado a través de el.
+Ahora, nos encargaremos de cargarlo a nuestros `resolvers` para que GraphQL ejecute la lógica, para eso vamos a agregarlo dentro de nuestro archivo `src/resolvers/index.js`.
 ```js
-import User from '../models/User';
+import Query from './query';
+import Mutation from './mutation';
+import Subscription from './subscription';
 
-const Query = {
-  status: () => 'Welcome to GraphQL',
-  users: (_, args, context) => {
-    return User.find().exec();
-  },
+const resolvers = {
+  Query,
+  Mutation,
+  Subscription,
 };
 
-export default Query;
+export default resolvers;
 ```
 
-De esta manera podemos acceder al contexto, pero nosotros lo haremos usando la técnica de destructuring de ES6, para solo obtener la variable que necesitamos, en este caso `currentUser`.
+Con esto, ya tenemos el servicio cargado con la suscripción, por lo tanto, vamos a indicarle que comience a publicar los cambios a través de `PubSub`. Para esto, vamos a localizar el archivo `src/resolvers/mutation.js` en el método `signup` y vamos a agregar la publicación del evento una ves que el usuario haya sido guardado.
 ```js
-import User from '../models/User';
-
-const Query = {
-  status: () => 'Welcome to GraphQL',
-  users: (_, args, { currentUser }) => {
-    return User.find().exec();
-  },
-};
-
-export default Query;
+pubsub.publish('user-added', { newUser });
 ```
 
-Una vez que obtuvimos nuestro supuesto usuario autorizado, vamos a verificar si que existe. Y en caso de que no exista, vamos a enviar un error de no autorizado.
-```js
-import User from '../models/User';
+Ahora vamos a probar la suscripción accediendo a `http://localhost:8080/graphql` y lanzaremos la siguiente prueba, una vez que ejecutemos la suscripción, podremos observar que se mantiene el botón con un stop, esto significa que nuestra suscripción esta escuchando el evento de la suscripción.
 
-const Query = {
-  status: () => 'Welcome to GraphQL',
-  users: (_, args, { currentUser }) => {
-    if(!currentUser) {
-      throw new Error('Unauthorized');
-    } 
-    return User.find().exec();
-  },
-};
+![GraphQL Suscriptions](./screenshots/graphql-suscriptions.png)
 
-export default Query;
-```
+Ya que nuestra suscripción este ejecutada, vamos a lanzar la creación de un nuevo usuario y si todo ha ido bien, podremos observar el nuevo usuario creado en nuestra suscripción.
 
-Ahora hagamos la prueba primeramente sin enviar el header de autorización.
-
-![GraphQL Playground Unauthorized](./screenshots/graphql-playground-unauthorized.png)
-
-Ahora usando un token para un usuario autorizado.
-
-![GraphQL Playground Authorized](./screenshots/graphql-playground-authorized.png)
+![GraphQL Subscriptions Data Changes](./screenshots/graphql-suscriptions-data.png)

@@ -5,7 +5,7 @@
 Proteger el Query `tours` que obtiene los tours generados solo para usuarios autenticados.
 
 ### REQUERIMIENTOS
-1. Proyecto con GraphQL API. [Ejemplo 05](https://github.com/coderdiaz/graphql-course-express/tree/ejemplo-05).
+1. Proyecto con GraphQL API. [Ejemplo 01](../Ejemplo-01).
 2. Mongo 4 o superior. [Download](https://www.mongodb.com/download-center/community).
 
 ### DESARROLLO
