@@ -1,4 +1,0 @@
-type Query {
-  status: String
-  users: [User]
-}

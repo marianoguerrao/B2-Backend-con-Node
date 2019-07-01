@@ -1,10 +1,10 @@
-# Reto 3
+# Ejemplo 04
 
 Instrucciones
 
 1. Crearemos un modelo de Tour en mongoose.
 1. Crearemos una funcion que nos genere un Tour.
-1. Crearemos una funcion que nos traiga todos los Tour.
+1. Crearemos una funcion que nos traiga todos Tour.
 
 El modelo tour debera contener la siguentes propiedades:
 

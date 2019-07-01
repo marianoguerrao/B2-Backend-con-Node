@@ -36,7 +36,7 @@ const postModel = (req, res) => {
   Users.push(newUser)
   // console.log(data)
 
-  res.write(JSON.parse(newUser))
+  res.write(JSON.stringify(newUser))
   res.end()
 }
 module.exports = {

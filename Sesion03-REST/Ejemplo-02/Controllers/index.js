@@ -9,7 +9,6 @@ function findUsers (req, res) {
     // Inidica que el tipo de contenido que enviaras es un json
     res.writeHead(201, { 'Content-type': 'application/json' })
     res.write(JSON.stringify(rows))
-    res.end()
     // res.end(arr.map(e => e))
   })
 }

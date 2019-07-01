@@ -1,8 +1,8 @@
-# Reto 1
+# Reto 2
 
 Dentro de este reto Conectaremos nuestra base de datos para que haya persistencia de datos.
 
-Utiliza como base el codigo del [ejemplo 02](../Ejemplo-02).
+Utiliza como base el codigo del ejemplo 02.
 
 Instrucciones:
 

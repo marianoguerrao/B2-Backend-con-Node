@@ -2,8 +2,8 @@
 
 Tomando como guía el ejemplo 4, tendrás que crear un modelo que contenga: 
 
-type: tour
-país: argentina
+type: tour   
+país: argentina   
 ruta: (ruta de la imagen)
 
 Deberás de renderizar este modelo al dar click en un botón. 
