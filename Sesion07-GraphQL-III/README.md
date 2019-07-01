@@ -2,9 +2,9 @@
 
 ### OBJETIVOS
  - Aprender como hacer un filtrado de datos con mongodb y graphql.
- - 
+ - Aprender a tener paginación.
+ - Aprender a ordenar de menos a mayor y viceversa.
 ### ORGANIZACIÓN DE CLASE
-
 
 - Filtrado.
     - [Ejemplo 1](Ejemplo-01)

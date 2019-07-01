@@ -1,4 +1,4 @@
-##### RETO 1O
+##### RETO 1
 ## DESPLEGANDO TU PROYECTO
 
 ### OBJETIVO
