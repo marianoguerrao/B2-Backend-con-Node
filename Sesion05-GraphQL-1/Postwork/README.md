@@ -16,4 +16,3 @@
 - Crea los querys para obtener la información adecuada para tu proyecto.
     - Ayuda:
         - [Ejemplo 3](../Ejemplo-03)
-

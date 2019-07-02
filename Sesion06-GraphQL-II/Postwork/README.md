@@ -14,4 +14,3 @@
 - Si tu API requiere que este atenta a cualquier cambio aplica suscripciones a tu API.
     - Ayuda:
         - [Ejemplo 3](../Ejemplo-03)
-
